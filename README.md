@@ -28,6 +28,8 @@ To run the app, do the following:
 
 To pull this repo:
 * All users
+  * Pull the repository
+  * Go to the "/game/" directory
   * Run "python3 -m venv (current directory)/venv" in the terminal
   * Run "source (current directory)/venv/activate" in the terminal
   * If the two steps are done correctly, you will see "(venv)" at the start of your terminal line.
