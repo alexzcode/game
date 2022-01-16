@@ -8,6 +8,7 @@ noise = PerlinNoise(octaves=2, seed=2123)
 i = 0
 playerWood = 0
 flat = input('Is world flat? (y/n)\n\n\n\n')
+currentItem = 1
 
 
 app = Ursina()
@@ -28,6 +29,14 @@ def update():
         player.y = 10
         player.x = 17.5
         player.z = 17.5
+    if held_keys['1']:
+        currentItem = 1
+    if held_keys['2']:
+        currentItem = 2
+    if held_keys['3']:
+        currentItem = 3
+    if held_keys['4']:
+        currentItem = 4
 
 
 class Block(Button):
@@ -43,8 +52,18 @@ class Block(Button):
     def input(self, key):
         if self.hovered:
             if key == 'right mouse down':
-                block = Block(position=self.position+mouse.normal,
-                              texture='assets/wood.png')
+                if currentItem == 1:
+                    block = Block(position=self.position+mouse.normal,
+                                  texture='assets/grass.png')
+                if currentItem == 2:
+                    block = Block(position=self.position+mouse.normal,
+                                  texture='assets/wood.png')
+                if currentItem == 3:
+                    block = Block(position=self.position+mouse.normal,
+                                  texture='assets/stone.png')
+                if currentItem == 4:
+                    block = Block(position=self.position+mouse.normal,
+                                  texture='assets/custom.png')
 
             if key == 'left mouse down':
                 destroy(self)
@@ -78,6 +97,10 @@ class makeTree():
                         scale=1)
 
 
+info = Text(parent=scene, position=(0, 7, 0), text='1 GRASS')
+info2 = Text(parent=scene, position=(0, 6, 0), text='2 WOOD')
+info3 = Text(parent=scene, position=(0, 5, 0), text='3 STONE')
+info4 = Text(parent=scene, position=(0, 4, 0), text='4 CUSTOM')
 makeTree()
 
 Sky()
