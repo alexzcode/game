@@ -5,8 +5,6 @@ from random import randint
 from ursina.prefabs.first_person_controller import FirstPersonController
 noise = PerlinNoise(octaves=2, seed=2123)
 flat = input('Is world flat? (y/n)\n\n')
-mapSizeX = input('Specify Map X Size (number)\n\n')
-mapSizeZ = input('Specify Map Z Size (number)\n\n')
 
 
 app = Ursina()
@@ -36,6 +34,8 @@ def update():
         currentItem = 3
     if held_keys['4']:
         currentItem = 4
+    if held_keys['5']:
+        currentItem = 5
 
 
 class Block(Button):
@@ -63,6 +63,13 @@ class Block(Button):
                 if currentItem == 4:
                     block = Block(position=self.position+mouse.normal,
                                   texture='assets/custom.png')
+                if currentItem == 5:
+                    block = Block(position=self.position+mouse.normal,
+                                  texture='assets/fire1.png')
+
+                    def update():
+                        block.texture = 'assets/fire1.png'
+                        block.texture = 'assets/fire2.png'
 
             if key == 'left mouse down':
                 destroy(self)
@@ -96,10 +103,6 @@ class makeTree():
                         scale=1)
 
 
-info = Text(position=(0, 7), text='1 GRASS')
-info2 = Text(position=(0, 6), text='2 WOOD')
-info3 = Text(position=(0, 5), text='3 STONE')
-info4 = Text(position=(0, 4), text='4 CUSTOM')
 makeTree()
 
 Sky()
