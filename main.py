@@ -1,22 +1,19 @@
-from re import S
-from turtle import position
 from ursina import *
 from perlin_noise import *
-from random import *
+from random import uniform
+from random import randint
 from ursina.prefabs.first_person_controller import FirstPersonController
 noise = PerlinNoise(octaves=2, seed=2123)
-i = 0
-playerWood = 0
 flat = input('Is world flat? (y/n)\n\n\n\n')
-currentItem = 1
 
 
 app = Ursina()
-
+currentItem = 1
 player = FirstPersonController()
 
 
 def update():
+    global currentItem
     if player.x > 35:
         player.x = 0
     if player.x < 0:
@@ -46,7 +43,7 @@ class Block(Button):
             position=position,
             model='cube',
             texture=texture,
-            color=color.white,
+            color=color.color(0, 0, random.uniform(0.9, 1)),
             highlight_color=color.gray)
 
     def input(self, key):
@@ -97,10 +94,10 @@ class makeTree():
                         scale=1)
 
 
-info = Text(parent=scene, position=(0, 7, 0), text='1 GRASS')
-info2 = Text(parent=scene, position=(0, 6, 0), text='2 WOOD')
-info3 = Text(parent=scene, position=(0, 5, 0), text='3 STONE')
-info4 = Text(parent=scene, position=(0, 4, 0), text='4 CUSTOM')
+info = Text(position=(0, 7), text='1 GRASS')
+info2 = Text(position=(0, 6), text='2 WOOD')
+info3 = Text(position=(0, 5), text='3 STONE')
+info4 = Text(position=(0, 4), text='4 CUSTOM')
 makeTree()
 
 Sky()
