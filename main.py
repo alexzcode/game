@@ -1,3 +1,4 @@
+from pickle import TRUE
 from ursina import *
 from perlin_noise import *
 from random import uniform
@@ -5,7 +6,7 @@ from random import randint
 from ursina.prefabs.first_person_controller import FirstPersonController
 noise = PerlinNoise(octaves=2, seed=2123)
 flat = input('Is world flat? (y/n)\n\n')
-
+day = input('Is Day time? (y/n)\n\n')
 
 app = Ursina()
 currentItem = 1
@@ -103,7 +104,15 @@ class makeTree():
                         scale=1)
 
 
-makeTree()
-
-Sky()
+if day == 'y':
+    sky = Entity(parent=scene, model='sphere',
+                 texture='assets/day.jpeg',
+                 scale=150,
+                 double_sided=True)
+elif day == 'n':
+    sky = Entity(parent=scene, model='sphere',
+                 texture='assets/night.jpeg',
+                 scale=150,
+                 double_sided=True)
+sky.visible = TRUE
 app.run()
