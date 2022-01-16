@@ -75,8 +75,8 @@ class Block(Button):
                 destroy(self)
 
 
-for z in range(mapSizeZ):
-    for x in range(mapSizeX):
+for z in range(35):
+    for x in range(35):
         if flat == 'y':
             block = Block(position=(x, 0, z), texture='assets/grass.png')
         elif flat == 'n':
