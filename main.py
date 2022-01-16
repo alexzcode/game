@@ -4,7 +4,9 @@ from random import uniform
 from random import randint
 from ursina.prefabs.first_person_controller import FirstPersonController
 noise = PerlinNoise(octaves=2, seed=2123)
-flat = input('Is world flat? (y/n)\n\n\n\n')
+flat = input('Is world flat? (y/n)\n\n')
+mapSizeX = input('Specify Map X Size (number)\n\n')
+mapSizeZ = input('Specify Map Z Size (number)\n\n')
 
 
 app = Ursina()
@@ -66,8 +68,8 @@ class Block(Button):
                 destroy(self)
 
 
-for z in range(35):
-    for x in range(35):
+for z in range(mapSizeZ):
+    for x in range(mapSizeX):
         if flat == 'y':
             block = Block(position=(x, 0, z), texture='assets/grass.png')
         elif flat == 'n':
